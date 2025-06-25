@@ -1,9 +1,22 @@
-
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Calendar, Clock, Video } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useEffect, useRef } from "react";
 
 const Schedule = () => {
+  const calendlyRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Only add the script if it hasn't been added yet
+    if (!document.getElementById("calendly-widget-script")) {
+      const script = document.createElement("script");
+      script.id = "calendly-widget-script";
+      script.src = "https://assets.calendly.com/assets/external/widget.js";
+      script.async = true;
+      document.body.appendChild(script);
+    }
+  }, []);
+
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation */}
@@ -23,7 +36,7 @@ const Schedule = () => {
 
       {/* Schedule Section */}
       <section className="py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-5xl font-space font-bold text-gray-900 mb-6">
               Schedule a Call
@@ -33,9 +46,9 @@ const Schedule = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
             {/* Call Details */}
-            <div className="space-y-8">
+            <div className="lg:col-span-2 flex flex-col space-y-8">
               <div className="bg-gray-50 rounded-lg p-8">
                 <h3 className="text-2xl font-space font-semibold text-gray-900 mb-6">
                   What to Expect
@@ -65,7 +78,7 @@ const Schedule = () => {
                 </div>
               </div>
 
-              <div className="bg-gray-50 rounded-lg p-8">
+              <div className="bg-gray-50 rounded-lg p-8 mt-auto">
                 <h3 className="text-2xl font-space font-semibold text-gray-900 mb-4">
                   We'll Discuss
                 </h3>
@@ -94,28 +107,23 @@ const Schedule = () => {
               </div>
             </div>
 
-            {/* Placeholder Booking Widget */}
-            <div className="bg-gray-50 rounded-lg p-8">
-              <h3 className="text-2xl font-space font-semibold text-gray-900 mb-6 text-center">
-                Book Your Call
-              </h3>
-              
-              {/* Placeholder for booking widget */}
-              <div className="min-h-[400px] bg-white rounded-lg border-2 border-dashed border-gray-300 flex items-center justify-center">
-                <div className="text-center">
-                  <Calendar className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                  <p className="text-gray-600 font-inter mb-4">
-                    Booking widget will be integrated here
-                  </p>
-                  <p className="text-sm text-gray-500 font-inter mb-6">
-                    (Calendly, Acuity, or custom booking system)
-                  </p>
-                  <Button asChild className="bg-black text-white hover:bg-gray-800 font-inter">
-                    <Link to="/contact">
-                      Contact Us Instead
-                    </Link>
-                  </Button>
-                </div>
+            {/* Calendly Booking Widget - Now Takes More Space */}
+            <div className="lg:col-span-3">
+              <div className="bg-gray-50 rounded-lg p-6">
+                <h3 className="text-2xl font-space font-semibold text-gray-900 mb-6 text-center">
+                  Book Your Call
+                </h3>
+                {/* Calendly inline widget */}
+                <div
+                  className="calendly-inline-widget w-full"
+                  data-url="https://calendly.com/carlofelipe101/30min"
+                  style={{ 
+                    width: '100%', 
+                    height: '492px',
+                    
+                  }}
+                  ref={calendlyRef}
+                ></div>
               </div>
             </div>
           </div>
