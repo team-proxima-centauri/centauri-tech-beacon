@@ -61,7 +61,7 @@ const Index = () => {
       technology: "React",
       industry: "Retail",
       icon: ShoppingCart,
-      image: "/assets/chocomart.png"
+      image: "https://res.cloudinary.com/dpkfvbpet/image/upload/v1753897255/chocomart_dhxkon.png"
     },
     {
       id: "devflowai",
@@ -72,7 +72,7 @@ const Index = () => {
       technology: "AI/ML",
       industry: "Technology",
       icon: Code2,
-      image: "/assets/devflow.png"
+      image: "https://res.cloudinary.com/dpkfvbpet/image/upload/v1753897255/devflow_avn23u.png"
     },
     {
       id: "kdm",
@@ -83,7 +83,7 @@ const Index = () => {
       technology: "React",
       industry: "Entertainment",
       icon: Monitor,
-      image: "/assets/kdm.png"
+      image: "https://res.cloudinary.com/dpkfvbpet/image/upload/v1753897256/kdm_y5xguj.png"
     },
     {
       id: "kingland",
@@ -94,7 +94,7 @@ const Index = () => {
       technology: "Full-Stack",
       industry: "Business",
       icon: Globe,
-      image: "/assets/kingland.png"
+      image: "https://res.cloudinary.com/dpkfvbpet/image/upload/v1753897256/kingland_qx5gve.png"
     },
     {
       id: "pdis",
@@ -105,7 +105,18 @@ const Index = () => {
       technology: "Database",
       industry: "Business",
       icon: Database,
-      image: "/assets/pdis.png"
+      image: "https://res.cloudinary.com/dpkfvbpet/image/upload/v1753897257/pdis_quiyng.png"
+    },
+    {
+      id: "kingsgambit",
+      title: "Kings Gambit",
+      description: "Advanced court reservation system enabling seamless booking management for sports facilities. Features real-time availability, automated scheduling, and comprehensive booking administration.",
+      tags: ["Reservation System", "Court Booking", "Real-time Scheduling", "Sports Management"],
+      category: "Booking Platform",
+      technology: "Full-Stack",
+      industry: "Sports & Recreation",
+      icon: Target,
+      image: "https://res.cloudinary.com/dpkfvbpet/image/upload/v1753897257/kingsgambit_ksw22w.png"
     }
   ];
 
@@ -266,7 +277,7 @@ const Index = () => {
       name: "Carlo Angelo Felipe",
       role: "CEO & Founder",
       specialties: "Tech Lead & Backend Developer",
-      image: "/assets/Carlo.png",
+      image: "https://res.cloudinary.com/dpkfvbpet/image/upload/v1753897256/Carlo_w8qs3m.png",
       description: "Visionary leader with expertise in backend architecture, system design, and business strategy. Drives technical excellence and innovation.",
       skills: ["Node.js", "Python", "System Architecture", "DevOps", "Leadership"]
     },
@@ -274,7 +285,7 @@ const Index = () => {
       name: "Renzo Gregorio",
       role: "Co-Founder",
       specialties: "Lead Frontend Developer",
-      image: "/assets/Renzo.png", 
+      image: "https://res.cloudinary.com/dpkfvbpet/image/upload/v1753897255/Renzo_swjoqv.png", 
       description: "Frontend specialist focused on creating beautiful, user-centric interfaces with modern technologies and exceptional user experiences.",
       skills: ["React", "TypeScript", "UI/UX Design", "Frontend Architecture", "Performance Optimization"]
     }
