@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Code2, Globe, Smartphone, Zap, Users, Target, ShoppingCart, Database, Monitor, ChevronLeft, ChevronRight, Menu, X, Phone, Mail } from "lucide-react";
+import { ArrowRight, Code2, Globe, Smartphone, Zap, Users, Target, ShoppingCart, Database, Monitor, ChevronLeft, ChevronRight, Menu, X, Phone, Mail, LogIn, UserPlus } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useAuth } from "@/contexts/AuthContext";
 
 const Index = () => {
+  const { user } = useAuth();
   const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -339,9 +341,26 @@ const Index = () => {
               <a href="#projects" className="text-gray-600 hover:text-gray-900 transition-colors font-inter">Projects</a>
               <a href="#about" className="text-gray-600 hover:text-gray-900 transition-colors font-inter">About</a>
               <Link to="/contact" className="text-gray-600 hover:text-gray-900 transition-colors font-inter">Contact</Link>
-              <Button asChild size="sm" className="bg-gray-900 text-white hover:bg-gray-800">
-                <Link to="/schedule">Get Started</Link>
-              </Button>
+              {user ? (
+                <Button asChild size="sm" variant="outline" className="border-gray-300">
+                  <Link to="/dashboard">Dashboard</Link>
+                </Button>
+              ) : (
+                <>
+                  <Button asChild size="sm" variant="ghost" className="text-gray-600 hover:text-gray-900">
+                    <Link to="/login">
+                      <LogIn className="mr-2 h-4 w-4" />
+                      Login
+                    </Link>
+                  </Button>
+                  <Button asChild size="sm" className="bg-gray-900 text-white hover:bg-gray-800">
+                    <Link to="/register">
+                      <UserPlus className="mr-2 h-4 w-4" />
+                      Sign Up
+                    </Link>
+                  </Button>
+                </>
+              )}
             </div>
 
             {/* Mobile menu button */}
@@ -363,40 +382,57 @@ const Index = () => {
           {isMobileMenuOpen && (
             <div className="md:hidden absolute top-full left-0 right-0 bg-white border-b border-gray-200 shadow-lg">
               <div className="px-4 pt-2 pb-6 space-y-4">
-                <a 
-                  href="#services" 
+                <a
+                  href="#services"
                   className="block text-gray-600 hover:text-gray-900 transition-colors font-inter py-2"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Services
                 </a>
-                <a 
-                  href="#projects" 
+                <a
+                  href="#projects"
                   className="block text-gray-600 hover:text-gray-900 transition-colors font-inter py-2"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Projects
                 </a>
-                <a 
-                  href="#about" 
+                <a
+                  href="#about"
                   className="block text-gray-600 hover:text-gray-900 transition-colors font-inter py-2"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   About
                 </a>
-                <Link 
-                  to="/contact" 
+                <Link
+                  to="/contact"
                   className="block text-gray-600 hover:text-gray-900 transition-colors font-inter py-2"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Contact
                 </Link>
-                <div className="pt-4">
-                  <Button asChild className="w-full bg-gray-900 text-white hover:bg-gray-800">
-                    <Link to="/schedule" onClick={() => setIsMobileMenuOpen(false)}>
-                      Get Started
-                    </Link>
-                  </Button>
+                <div className="pt-4 space-y-2">
+                  {user ? (
+                    <Button asChild className="w-full bg-gray-900 text-white hover:bg-gray-800">
+                      <Link to="/dashboard" onClick={() => setIsMobileMenuOpen(false)}>
+                        Dashboard
+                      </Link>
+                    </Button>
+                  ) : (
+                    <>
+                      <Button asChild variant="outline" className="w-full border-gray-300">
+                        <Link to="/login" onClick={() => setIsMobileMenuOpen(false)}>
+                          <LogIn className="mr-2 h-4 w-4" />
+                          Login
+                        </Link>
+                      </Button>
+                      <Button asChild className="w-full bg-gray-900 text-white hover:bg-gray-800">
+                        <Link to="/register" onClick={() => setIsMobileMenuOpen(false)}>
+                          <UserPlus className="mr-2 h-4 w-4" />
+                          Sign Up
+                        </Link>
+                      </Button>
+                    </>
+                  )}
                 </div>
               </div>
             </div>
